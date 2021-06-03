@@ -24,7 +24,21 @@
 
 Add-WindowsFeature Web-Server
 
-Add-WindowsFeature Web-Server
-New-Item -ItemType "file" -Path "C:\inetpub\wwwroot\mizan.txt" -value="hello World"
-Invoke-command -ScriptBlock{iisreset}
+# download website zip
+$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/AzureAutoScalingTestApp.zip'
+$ZipBlobDownloadLocation = 'C:\inetpub\AzureAutoScalingTestApp.zip'
+(New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
+
+# extract downloaded zip
+$UnzipLocation = 'C:\inetpub\wwwroot\'
+Add-Type -assembly "system.io.compression.filesystem"
+[io.compression.zipfile]::ExtractToDirectory($ZipBlobDownloadLocation, $UnzipLocation)
+
+# read write permission
+$Path = "C:\inetpub\wwwroot\*"
+$User = "IIS AppPool\DefaultAppPool"
+$Acl = Get-Acl $Path
+$Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
+$Acl.SetAccessRule($Ar)
+Set-Acl $Path $Acl
 
