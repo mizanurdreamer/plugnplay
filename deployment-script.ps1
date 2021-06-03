@@ -24,6 +24,5 @@
 
 Add-WindowsFeature Web-Server
 # clean www root folder
-Set-Location -Path c:\inetpub\wwwroot
-Add-Content iisstart.htm "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
+Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 Invoke-command -ScriptBlock{iisreset}
