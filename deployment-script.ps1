@@ -24,21 +24,6 @@
 
 Add-WindowsFeature Web-Server
 # clean www root folder
-Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
-# download website zip
-$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/blob/master/AzureAutoScalingTestApp.zip'
-$ZipBlobDownloadLocation = 'D:\AzureAutoScalingTestApp.zip'
-(New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
-
-# extract downloaded zip
-$UnzipLocation = 'C:\inetpub\wwwroot\'
-Add-Type -assembly "system.io.compression.filesystem"
-[io.compression.zipfile]::ExtractToDirectory($ZipBlobDownloadLocation, $UnzipLocation)
-
-# read write permission
-$Path = "C:\inetpub\wwwroot\temp"
-$User = "IIS AppPool\DefaultAppPool"
-$Acl = Get-Acl $Path
-$Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
-$Acl.SetAccessRule($Ar)
-Set-Acl $Path $Acl
+Set-Location -Path c:\inetpub\wwwroot
+Add-Content iisstart.htm "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
+Invoke-command -ScriptBlock{iisreset}
