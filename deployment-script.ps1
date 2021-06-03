@@ -42,4 +42,4 @@ $Acl = Get-Acl $Path
 $Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
 $Acl.SetAccessRule($Ar)
 Set-Acl $Path $Acl
-
+Invoke-command -ScriptBlock{iisreset}
