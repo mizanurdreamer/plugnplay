@@ -23,10 +23,11 @@
 # SOFTWARE.
 
 Add-WindowsFeature Web-Server
-
+# clean www root folder
+Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 # download website zip
-$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/AzureAutoScalingTestApp.zip'
-$ZipBlobDownloadLocation = 'C:\inetpub\AzureAutoScalingTestApp.zip'
+$ZipBlobUrl = 'https://plugnplaystorageaccount.blob.core.windows.net/plugnplaycontainer/website.zip'
+$ZipBlobDownloadLocation = 'D:\website.zip'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
 
 # extract downloaded zip
@@ -35,7 +36,7 @@ Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($ZipBlobDownloadLocation, $UnzipLocation)
 
 # read write permission
-$Path = "C:\inetpub\wwwroot\*"
+$Path = "C:\inetpub\wwwroot"
 $User = "IIS AppPool\DefaultAppPool"
 $Acl = Get-Acl $Path
 $Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
