@@ -23,6 +23,7 @@
 # SOFTWARE.
 
 Add-WindowsFeature Web-Server
-# clean www root folder
-Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
+Set-Location -Path c:\inetpub\wwwroot
+Add-Content mizan.htm "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
 Invoke-command -ScriptBlock{iisreset}
+
