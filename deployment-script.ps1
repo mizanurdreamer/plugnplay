@@ -26,8 +26,8 @@ Add-WindowsFeature Web-Server
 # clean www root folder
 Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 # download website zip
-$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/logo.png'
-$ZipBlobDownloadLocation = 'C:\inetpub\wwwroot\'
+$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/index.html'
+$ZipBlobDownloadLocation = 'C:\inetpub\wwwroot\index.html'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
 
 # read write permission
