@@ -30,7 +30,7 @@ Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 
 # download website zip
 $ZipBlobUrl = 'https://plugnplaystorageaccount.blob.core.windows.net/plugnplaycontainer/Website.zip'
-$ZipBlobDownloadLocation = 'D:\Website.zip'
+$ZipBlobDownloadLocation = 'D:\ScalingSite.zip'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
 
 # extract downloaded zip
