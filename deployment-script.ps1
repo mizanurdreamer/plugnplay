@@ -36,7 +36,7 @@ Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($ZipBlobDownloadLocation, $UnzipLocation)
 
 # read write permission
-$Path = "C:\inetpub\wwwroot\temp"
+$Path = "C:\inetpub\wwwroot"
 $User = "IIS AppPool\DefaultAppPool"
 $Acl = Get-Acl $Path
 $Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
