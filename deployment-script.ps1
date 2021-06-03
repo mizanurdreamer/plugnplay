@@ -26,8 +26,8 @@ Add-WindowsFeature Web-Server
 # clean www root folder
 Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 # download website zip
-$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/AzureAutoScalingTestApp.zip'
-$ZipBlobDownloadLocation = 'D:\AzureAutoScalingTestApp.zip'
+$ZipBlobUrl = 'https://github.com/raselahmmedgit/azureapps/raw/main/dsc.zip'
+$ZipBlobDownloadLocation = 'D:\dsc.zip'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
 
 # extract downloaded zip
