@@ -26,14 +26,9 @@ Add-WindowsFeature Web-Server
 # clean www root folder
 Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 # download website zip
-$ZipBlobUrl = 'https://github.com/raselahmmedgit/azureapps/raw/main/dsc.zip'
-$ZipBlobDownloadLocation = 'D:\dsc.zip'
+$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/logo.png'
+$ZipBlobDownloadLocation = 'C:\inetpub\wwwroot\'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
-
-# extract downloaded zip
-$UnzipLocation = 'C:\inetpub\wwwroot\'
-Add-Type -assembly "system.io.compression.filesystem"
-[io.compression.zipfile]::ExtractToDirectory($ZipBlobDownloadLocation, $UnzipLocation)
 
 # read write permission
 $Path = "C:\inetpub\wwwroot\*"
