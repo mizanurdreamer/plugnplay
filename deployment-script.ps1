@@ -29,7 +29,7 @@ Add-WindowsFeature -Name Web-Server -IncludeAllSubFeature
 Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
 
 # download website zip
-$ZipBlobUrl = 'https://storageitorian.blob.core.windows.net/setup-infra-and-deploy-app/Website.zip'
+$ZipBlobUrl = 'https://plugnplaystorageaccount.blob.core.windows.net/plugnplaycontainer/Website.zip'
 $ZipBlobDownloadLocation = 'D:\Website.zip'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
 
