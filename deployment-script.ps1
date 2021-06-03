@@ -23,6 +23,6 @@
 # SOFTWARE.
 
 Add-WindowsFeature Web-Server
-New-Item -Path "c:\inetpub\wwwroot"  -Name "default.htm" -ItemType "file" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
+New-Item -Path "c:\inetpub\wwwroot\"  -Name "default.htm" -ItemType "file" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
 Invoke-command -ScriptBlock{iisreset}
 
