@@ -25,6 +25,6 @@
 Add-WindowsFeature Web-Server
 
 Add-WindowsFeature Web-Server
-Set-Content -Path "C:\inetpub\wwwroot\Default.htm" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
+Set-Content -Path "C:\inetpub\wwwroot\mizan.htm" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Mizan FastTrack Rocks!!!!!!!</center></H1>"
 Invoke-command -ScriptBlock{iisreset}
 
