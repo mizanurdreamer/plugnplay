@@ -23,19 +23,7 @@
 # SOFTWARE.
 
 Add-WindowsFeature Web-Server
-# clean www root folder
-Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
-# download website zip
-$ZipBlobUrl = 'https://github.com/mizanurdreamer/plugnplay/raw/master/index.html'
-$ZipBlobDownloadLocation = 'C:\inetpub\wwwroot\index.html'
-(New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
-
-# read write permission
-$Path = "C:\inetpub\wwwroot\*"
-$User = "IIS AppPool\DefaultAppPool"
-$Acl = Get-Acl $Path
-$Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
-$Acl.SetAccessRule($Ar)
-Set-Acl $Path $Acl
+Set-Location -Path c:\inetpub\wwwroot
+New-Item -Path . -Name "iisstart.htm" -ItemType "file" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Azure FastTrack Rocks!!!!!!!</center></H1>"
 Invoke-command -ScriptBlock{iisreset}
 
