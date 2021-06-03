@@ -25,6 +25,6 @@
 Add-WindowsFeature Web-Server
 
 Add-WindowsFeature Web-Server
-Net-Item -Path "C:\inetpub\wwwroot\" -Name "mizan.htm" -ItemType "file" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Mizan FastTrack Rocks!!!!!!!</center></H1>"
+New-Item -ItemType "file" -Path "C:\inetpub\wwwroot\mizan.htm" -Value "<H1><center>WELCOME to my Web Server $env:COMPUTERNAME, Mizan FastTrack Rocks!!!!!!!</center></H1>"
 Invoke-command -ScriptBlock{iisreset}
 
