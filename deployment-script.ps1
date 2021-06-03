@@ -22,12 +22,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-Add-WindowsFeature Web-Server
+# add web server with all features
+Add-WindowsFeature -Name Web-Server -IncludeAllSubFeature
+
 # clean www root folder
 Remove-Item C:\inetpub\wwwroot\* -Recurse -Force
+
 # download website zip
-$ZipBlobUrl = 'https://plugnplaystorageaccount.blob.core.windows.net/plugnplaycontainer/website.zip'
-$ZipBlobDownloadLocation = 'D:\website.zip'
+$ZipBlobUrl = 'https://storageitorian.blob.core.windows.net/setup-infra-and-deploy-app/Website.zip'
+$ZipBlobDownloadLocation = 'D:\Website.zip'
 (New-Object System.Net.WebClient).DownloadFile($ZipBlobUrl, $ZipBlobDownloadLocation)
 
 # extract downloaded zip
@@ -36,10 +39,9 @@ Add-Type -assembly "system.io.compression.filesystem"
 [io.compression.zipfile]::ExtractToDirectory($ZipBlobDownloadLocation, $UnzipLocation)
 
 # read write permission
-$Path = "C:\inetpub\wwwroot"
+$Path = "C:\inetpub\wwwroot\temp"
 $User = "IIS AppPool\DefaultAppPool"
 $Acl = Get-Acl $Path
 $Ar = New-Object  system.security.accesscontrol.filesystemaccessrule($User, "FullControl", "ContainerInherit,ObjectInherit", "None", "Allow")
 $Acl.SetAccessRule($Ar)
 Set-Acl $Path $Acl
-Invoke-command -ScriptBlock{iisreset}
