@@ -25,6 +25,6 @@
 Add-WindowsFeature Web-Server
 
 Add-WindowsFeature Web-Server
-New-Item -ItemType "file" -Path "C:\inetpub\wwwroot\mizan.txt"
+New-Item -ItemType "file" -Path "C:\inetpub\wwwroot\mizan.txt" -value="hello World"
 Invoke-command -ScriptBlock{iisreset}
 
